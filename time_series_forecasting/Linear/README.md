@@ -1,4 +1,4 @@
-This **simple linear model** for deep learning based time series forecasting (in sample) for forecasting the value of one time step ahead indeed works quite well; at least on this "quite seasonal" (univariate) time series.
+This **simple linear model** for deep learning based time series forecasting (in sample) for forecasting the value of one time step ahead indeed works quite well; at least on the "quite seasonal" (univariate) time series in use here.
 
 Idea is based on this paper from 2022:
 
