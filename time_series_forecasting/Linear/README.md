@@ -28,7 +28,11 @@ self.Linear_Trend = nn.Linear(self.seq_len,self.pred_len)  # L, T
 
 The csv file with the monthly milk production data can be downloaded from here: https://github.com/philipperemy/keras-tcn/blob/master/tasks/monthly-milk-production-pounds-p.csv
 
+<br/>
+
 "Linear" really means: **y = xA + b**, see at: https://pytorch.org/docs/stable/generated/torch.nn.Linear.html
+
+<br/>
 
 At the core of this computer program is this class definition for a neural network model with a LOOKBACK_WINDOW (of the last 12 months of production values) and one output, that is the production value of the following month:
 
@@ -49,7 +53,7 @@ class Net(T.nn.Module):
 <br/>
 
 Test results:
-* AdamW is not better than Adam with the LogCosh loss function: variance of errors of all 50 models is higher; mean is about the same
+* AdamW optimization is not better than Adam optimization (https://pytorch.org/docs/stable/generated/torch.optim.Adam.html) with the LogCosh loss function: variance of errors of all 50 models is higher; mean is about the same
 
 <br/>
 
