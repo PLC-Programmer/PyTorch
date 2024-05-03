@@ -18,7 +18,7 @@ deep learning based time series forecasting
 #   https://github.com/philipperemy/keras-tcn/blob/master/tasks/time_series_forecasting.py
 #
 #
-# run on ubuntu-med3: $ python3 Linear_monthly_milk_production_forecasting.py
+# run on Ubuntu: $ python3 Linear_monthly_milk_production_forecasting.py
 #
 #
 # test on Ubuntu 22.04.4 LTS, Python 3.10.12, torch 2.1.0: OK
