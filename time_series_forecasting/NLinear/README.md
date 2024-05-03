@@ -1,7 +1,6 @@
 This is my **NLinear** version ("Normalization-Linear") of the basic Linear model from here: https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/Linear
 
-> **Warning**
-It's not working well on the monthly Monthly Milk Production time series!
+> **It's not working well on the monthly Monthly Milk Production time series!**
 
  
 Normalization (++), or at least the proposed normalization (+), doesn't help here:
@@ -9,8 +8,7 @@ Normalization (++), or at least the proposed normalization (+), doesn't help her
 * the LOSS_LIMIT has been increased from 1.0 to 3.8 to bring down the mean epochs value roughly near the mean epochs value of the original Linear model
 * with 10 models the mean of the prediction errors is at a similar value but the variance of the prediction errors is almost nonexistent with a (rounded) value of 0.0 (being for example 0.020351...)
 
-> **Warning**
-=> the "visual variability" of a set of 10 models is neglectable!
+> **=> the "visual variability" of a set of 10 models is neglectable!**
 
 <br/>
 
