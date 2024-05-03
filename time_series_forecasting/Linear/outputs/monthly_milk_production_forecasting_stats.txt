@@ -1,0 +1,29 @@
+model # and LogCosh value:
+  model #0: error metric = 67.1
+  model #1: error metric = 66.1
+  model #2: error metric = 65.9
+  model #3: error metric = 68.3
+  model #4: error metric = 68.2
+  model #5: error metric = 68.0
+  model #6: error metric = 66.9
+  model #7: error metric = 67.1
+  model #8: error metric = 66.9
+  model #9: error metric = 67.6
+---------------
+TOTAL_MONTHS = 168
+LOOKBACK_WINDOW = 12
+TRAINING_CUTOFF = 155
+---------------
+OPTIMIZER = Adam
+LOSS_FUNCTION = LogCosh
+LOSS_LIMIT = 1.0
+LEARNING_RATE = 0.003
+TUNE_ON = True
+---------------
+EPOCHS (training) = 241
+  mean epochs = 58.3
+  max epochs = 166.0
+  min epochs = 12.0
+---------------
+Mean of the errors of all 10 models = 67.2
+Variance of the errors of all 10 models = 0.6
