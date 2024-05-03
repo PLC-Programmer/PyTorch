@@ -31,4 +31,6 @@ Test results:
 
 <br/>
 
-Note: all 12 forecasted monthly production values are only based on past training data. So, for example forecasted data point #2 does not use actual data point #1 of the test data on the left hand side of the time series. Or in other words, the prediction horizon is indeed 12 months.
+Notes:
+* all 12 forecasted monthly production values are only based on past training data (and its own forecasted values). So, for example forecasted data point #2 does not use actual data point #1 of the test data on the left hand side of the time series. Or in other words, the prediction horizon is indeed 12 months.
+* I'm a fan of the **LogCosh** loss funtion (https://jiafulow.github.io/blog/2021/01/26/huber-and-logcosh-loss-functions/). As you can see I've also left in comments the original MSE (Mean Squared Error) code as a standard loss function. It's a pitty that this elegant loss function is not officially supported in PyTorch yet. This implementation is my own (including potential errors).
