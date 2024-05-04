@@ -36,5 +36,5 @@ class NNet(T.nn.Module):
         x = x - last_t  # subtract last element from all input sequence
         z = self.lin(x)
         z = z + last_t  # add back last element to all output
-        return z
+        return z, x
 ```
