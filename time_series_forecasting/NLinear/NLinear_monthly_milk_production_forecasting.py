@@ -6,7 +6,7 @@ for the input sequence ("Normalization-Linear")
 (in sample): forecast the value of one time step ahead
 """
 #
-# 2024-05-03
+# 2024-05-03/04
 #
 #
 # sources:
@@ -36,7 +36,7 @@ for the input sequence ("Normalization-Linear")
 #
 #
 # to-do:
-#   -
+#   - 
 #
 #
 # pip install plotly
@@ -63,9 +63,8 @@ TITLE = "Normalized one-layer linear model for time series forecasting"
 NAME1 = "Monthly Milk Production (in pounds)"
 FILENAME1    = 'monthly_milk_production_forecasting_'
 FILENAME2    = 'monthly_milk_production_forecasting_stats.txt'
-PROJECT_NAME = 'monthly_milk_production'
-
-
+FILENAME3    = 'normalized_input_sequences.png'
+ 
 milk = pd.read_csv('monthly-milk-production-pounds-p.csv', index_col=0, parse_dates=True)
 # print("Head of milk:\n", milk.head())
 
@@ -162,7 +161,7 @@ class NNet(T.nn.Module):
         x = x - last_t  # subtract last element from all input sequence
         z = self.lin(x)
         z = z + last_t  # add back last element to all output
-        return z
+        return z, x
 ##################################################################
 
 
@@ -350,7 +349,7 @@ for h in range(N_PRED):
             input = x_train_tensor[j].reshape(-1)  # tensor
             # no reshape => RuntimeError: mat1 and mat2 shapes cannot be multiplied (12x1 and 12x1)
 
-            y_pred = model(input)  # forward
+            y_pred, Ninput_seq = model(input)  # forward
             # print('training mode output for x_train_tensor[0]: {}'.format(model(x_print)))
 
             # loss  = criterion(y_pred, y_train_tensor[j])
@@ -383,7 +382,7 @@ for h in range(N_PRED):
 
         input = x_test_tensor[i-LOOKBACK_WINDOW:i]
 
-        output = model(input)
+        output, Ninput_seq = model(input)
 
         pred_value[i-LOOKBACK_WINDOW] = output.detach().numpy()[0]  # tensor to numpy scalar
 
@@ -474,6 +473,44 @@ print(f'Maximum epoch when the loss limit has been reached = {np.max(loss_limit_
 print(f'Minimum epoch when the loss limit has been reached = {np.min(loss_limit_epoch):.1f}')
 
 
+
+##################################################################
+#
+# visualize some normalized input sequences of the NLinear model:
+# - first tensor, middle tensor, last tensor of the simple training dataset
+#
+raw_input_first  = x_train_tensor[0].reshape(-1)  # full year 1962
+raw_input_middle = x_train_tensor[len(x_train_tensor) // 2].reshape(-1)  # full year 1968
+
+# making a tensor for full year 1974, which is not trained with function split_dataset2a(),
+# but a year 1973/11 - 1974/11,
+# though full year 1974 is used here for equalized demonstration purposes:
+x_train_last_star = milk[-LOOKBACK_WINDOW-LOOKBACK_WINDOW:-LOOKBACK_WINDOW]
+raw_input_last_star = T.from_numpy(x_train_last_star).type(T.FloatTensor).reshape(-1)
+
+y_pred_first, Ninput_seq_first = model(raw_input_first)
+y_pred_middle, Ninput_seq_middle = model(raw_input_middle)
+y_pred_last_star, Ninput_seq_last_star = model(raw_input_last_star)
+
+
+# plotting these normalized input sequences:
+fig = plt.figure()
+
+plt.suptitle(TITLE)
+plt.title('normalized input sequences of selected production years')
+
+plt.plot(Ninput_seq_first, label='1962', color='xkcd:powder blue')
+plt.plot(Ninput_seq_middle, label='1968', color='xkcd:sky blue')
+plt.plot(Ninput_seq_last_star, label='1974', color='xkcd:dusk blue')
+
+plt.legend()
+plt.grid()
+plt.tight_layout()
+plt.savefig(FILENAME3)
+plt.close()
+
+
 breakpoint()
+
 
 # end of NLinear_monthly_milk_production_forecasting.py
