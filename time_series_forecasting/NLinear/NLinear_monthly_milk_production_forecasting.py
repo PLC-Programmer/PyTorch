@@ -56,7 +56,7 @@ import plotly  # for optuna plots
 
 
 TUNE_ON = False   # default: False
-TUNE_TRIALS = 10 # 10 is enough
+TUNE_TRIALS = 10  # 10 is enough
 
 
 TITLE = "Normalized one-layer linear model for time series forecasting"
@@ -224,7 +224,7 @@ def tune_model(trial):
             optimizer.zero_grad()
 
             input = x_train_tensor[j].reshape(-1)
-            y_pred = model(input)
+            y_pred, Ninput_seq = model(input)
             loss = myCustomLoss(y_pred, y_train_tensor[j])
             loss.backward()
             optimizer.step()
@@ -237,7 +237,7 @@ def tune_model(trial):
 
             for j in range(len(x_val_tensor)):
                 input = x_val_tensor[j].reshape(-1)
-                y_pred = model(input)
+                y_pred, Ninput_seq = model(input)
                 val_loss_batch += myCustomLoss(y_pred, y_val_tensor[j])
 
         val_loss_epoch = val_loss_batch / len(y_val_tensor)
