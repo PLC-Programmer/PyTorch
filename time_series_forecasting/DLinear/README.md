@@ -1,3 +1,5 @@
+#A trend: what kind of moving average with what parameters?
+
 In preparation of the **DLinear** model ("Decomposition-Linear": https://github.com/cure-lab/LTSF-Linear/blob/main/models/DLinear.py (+)) I came across questions how to implement the technical details for the decomposition.
 
 The original paper only states:
@@ -37,7 +39,7 @@ class SMANet(T.nn.Module):
 
 <br/>
 
-Then comes up the question for the kernel size, that is the size of the look-back window size. The original code has a fixed size of 25 data points, something which has been taken over from the Autoformer model:
+Then comes up the question for the kernel size, that is the size of the look-back window. The original code has a fixed size of 25 data points, something which has been taken over from the Autoformer model:
 
 *For DLinear, the moving average kernel size for decomposition is 25, which is the same as Autoformer.*
 
@@ -45,7 +47,7 @@ Then comes up the question for the kernel size, that is the size of the look-bac
 
 So far I didn't find some reasoning why to prefer one moving average kernel size over the other.
 
-In this paper..
+In this paper (++)..
 
 &nbsp;&nbsp;Forecasting with moving averages
 
@@ -57,7 +59,32 @@ In this paper..
 
 https://people.duke.edu/~rnau/Notes_on_forecasting_with_moving_averages--Robert_Nau.pdf
 
-..I got the idea to experiment with kernel sizes. That's why I have written this small utility for: https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/DLinear/DLinear_monthly_milk_production_moving_averages.py
+..I got the idea to experiment with kernel sizes ("model comparison"). That's why I have written this small utility for: https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/DLinear/DLinear_monthly_milk_production_moving_averages.py
+
+![plot](./outputs/DLinear_monthly_milk_production_moving_averages_01.png)
+
+![plot](./outputs/DLinear_monthly_milk_production_moving_averages_02.png)
+
+![plot](./outputs/DLinear_monthly_milk_production_moving_averages_03.png)
+
+![plot](./outputs/DLinear_monthly_milk_production_moving_averages_04.png)
+
+<br/>
+
+So, a simple moving average of 12 months (**SMA12**) produces an "clear trend" output for this time series, SMA9 and SMA15 do not!
+
+However, it doesn't feature the lowest value of the loss function, here the common mean squared error (mse). Among the selected kernel sizes, SMA15 is doing this.
+
+Shouldn't a trend line also feature low "variability"?
+
+So, I calculated the variance of some selected moving averages. SMA36, a moving average over 3 years, shows slightly lower variance than SMA12, but it's mse value is higher :confused:
+
+One can see that choosing the "right" moving average model isn't easy.
 
 
+Paper (++) strongly features the concept of **residual autocorrelation** to check the quality of a moving average. I'm not so far yet because the residual component in our case is the other, the remainder (seasonal) component of the time series.
+
+However, I picked up this idea to apply an autocorrelation function (ACF) on the time series itself, featuring very clear annual peaks:
+
+![plot](./outputs/DLinear_monthly_milk_production_moving_averages_acf.png)
 
