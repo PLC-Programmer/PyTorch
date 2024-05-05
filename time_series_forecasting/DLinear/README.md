@@ -1,6 +1,6 @@
 ## A trend: what kind of moving average with what parameters?
 
-In preparation of the **DLinear** model ("Decomposition-Linear": https://github.com/cure-lab/LTSF-Linear/blob/main/models/DLinear.py (+)) I came across questions how to implement the technical details for the decomposition.
+In preparation of the **DLinear** model ("Decomposition-Linear": https://github.com/cure-lab/LTSF-Linear/blob/main/models/DLinear.py (+)) I came across questions how to implement the technical details of the decomposition of a time series.
 
 The original paper only states:
 
