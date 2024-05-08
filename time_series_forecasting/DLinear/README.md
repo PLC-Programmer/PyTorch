@@ -82,6 +82,8 @@ So, I calculated the variance of some selected moving averages. SMA36, a moving 
 
 Paper (++) strongly features the concept of **residual autocorrelation** to check the quality of a moving average. I'm not so far yet because the residual component in our case is the other, the remainder (seasonal) component of the time series.
 
+### Autocorrelation function (ACF)
+
 However, I picked up this idea to apply an autocorrelation function (ACF) on the time series itself, featuring very clear annual peaks:
 
 ![plot](./outputs/DLinear_monthly_milk_production_moving_averages_acf.png)
