@@ -1,6 +1,6 @@
 I've been experimenting with a **decomposition** of the highly seasonal **monthly milk production** time series (https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/DLinear#autocorrelation-function-acf) and came to the conclusion that my two concepts I've working on did not surpass the prediction quality of the simple linear model: https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/Linear
 
-I did a decomposition in the spirit of the original DLinear.py program (though I didn't copy this concept 1:1): https://github.com/cure-lab/LTSF-Linear/blob/main/models/DLinear.py
+I did a decomposition in the spirit of the original *DLinear.py* program (though I didn't copy this concept 1:1): https://github.com/cure-lab/LTSF-Linear/blob/main/models/DLinear.py
 
 <br/>
 
