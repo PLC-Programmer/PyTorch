@@ -1,0 +1,82 @@
+model # and LogCosh value:
+  model #0: error metric = 0.09
+  model #1: error metric = 0.08
+  model #2: error metric = 0.08
+---------------
+total_datapoints = 700
+LOOKBACK_WINDOW = 150
+TRAINING_CUTOFF = 500
+VALIDATION_CUTOFF = 600
+# of prediction steps (model output) = 1 datapoint
+prediction horizon = 100
+---------------
+OPTIMIZER = Adam
+LOSS_FUNCTION = LogCosh
+LOSS_LIMIT = 0.01
+LEARNING_RATE = 0.001
+---------------
+TUNE_ON = False
+---------------
+NOISE_ON = True
+NOISE_FACTOR = 0.2
+NOISE_STANDARD_T = False
+NOISE_STANDARD_T_DF = 5.0
+---------------
+EPOCHS (training) = 150
+  mean epochs = 2.0
+  max epochs = 3.0
+  min epochs = 1.0
+---------------
+Mean of the errors of all 3 models = 0.08
+Variance of the errors of all 3 models = 0.0
+
++--------------------+------------+
+|      Modules       | Parameters |
++--------------------+------------+
+| layers.lin1.weight |   15000    |
+|  layers.lin1.bias  |    100     |
+| layers.lin2.weight |    100     |
+|  layers.lin2.bias  |     1      |
++--------------------+------------+
+Total trainable parameters: 15201
+model # and LogCosh value:
+  model #0: error metric = 0.09
+  model #1: error metric = 0.08
+  model #2: error metric = 0.08
+---------------
+total_datapoints = 700
+LOOKBACK_WINDOW = 150
+TRAINING_CUTOFF = 500
+VALIDATION_CUTOFF = 600
+# of prediction steps (model output) = 1 datapoint
+prediction horizon = 100
+---------------
+OPTIMIZER = Adam
+LOSS_FUNCTION = LogCosh
+LOSS_LIMIT = 0.01
+LEARNING_RATE = 0.001
+---------------
+TUNE_ON = False
+---------------
+NOISE_ON = True
+NOISE_FACTOR = 0.2
+NOISE_STANDARD_T = False
+NOISE_STANDARD_T_DF = 5.0
+---------------
+EPOCHS (training) = 150
+  mean epochs = 2.0
+  max epochs = 3.0
+  min epochs = 1.0
+---------------
+Mean of the errors of all 3 models = 0.08
+Variance of the errors of all 3 models = 0.0
+
++--------------------+------------+
+|      Modules       | Parameters |
++--------------------+------------+
+| layers.lin1.weight |   15000    |
+|  layers.lin1.bias  |    100     |
+| layers.lin2.weight |    100     |
+|  layers.lin2.bias  |     1      |
++--------------------+------------+
+Total trainable parameters: 15201
