@@ -1,4 +1,6 @@
-Sometimes it's easier to experiment with **synthetic times series** ("curves") first since it gives you more control over different setups.
+### Synthetic times series 
+
+Sometimes it's easier to experiment with synthetic times series ("deterministic curves") first since it gives you more control over different setups.
 
 I got this idea from here: https://github.com/tgchomia/ts/blob/main/Example.txt
 
@@ -28,6 +30,8 @@ The lookback window size was - and still is - set by me to the (known) full peri
 <br/>
 
 Apparently a simple one-layer linear model, which did well at the monthly milk production, is insufficient here, even with a perfectly "clean" time series made of two harmonic oscillations!
+
+### The two-layer model 
 
 So, I added another linear layer (and with a standard ReLU (Rectified Linear Unit) activation function in between.
 By the way: you need some kind of activiation between layers, otherwise a second layer would not lead to any improvements! See for example: "Without any activation, a neural network learn will only be able to learn a linear relation between input and the desired output.", https://link.springer.com/chapter/10.1007/978-3-030-31760-7_1)
@@ -60,6 +64,16 @@ class Net(T.nn.Module):
         z = self.layers(x)
         return z
 ```
+
+### What about some noise? 
+
+So far our experimental time series shouldn't have been too demanding (it isn't because its still also perfectly **stationary**: https://towardsdatascience.com/stationarity-in-time-series-analysis-90c94f27322)
+
+So, I added some "benign" noise in the form of Gaussian noise (with a maximum amplitude of roughly 20% of the amplitude of the original signal: *np.max(y_noise) / np.max(y_clean)*) to the original, clean signal:
+
+![plot](./+20%_Gaussian_noise/Linear_deterministic_curve_forecasting--01.png)
+
+![plot](./+20%_Gaussian_noise/Linear_deterministic_curve_forecasting--01a.png)
 
 
 
