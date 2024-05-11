@@ -1,6 +1,6 @@
 ## Synthetic times series
 
-Sometimes it's easier to experiment with synthetic times series ("deterministic curves") first since it gives you more control over different setups.
+Sometimes it's easier to first experiment with synthetic times series ("deterministic curves") since it gives you more control over different setups.
 
 I got this idea from here: https://github.com/tgchomia/ts/blob/main/Example.txt
 
@@ -9,6 +9,8 @@ So, this is the time series to experiment with, made of 700 datapoints (70 time 
 ![plot](./Linear_deterministic_curve_forecasting_org_curve.png)
 
 This is also a "quite seasonal" (univariate) time series, like the monthly milk production (from the real world): https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/Linear, made of two harmonic oscillations.
+
+Albeit this synthetic times series doesn't feature a **trend**! Cf. https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/DLinear
 
 <br/>
 
@@ -23,13 +25,11 @@ However, starting with a one-layer (linear) model led to rather disappointing re
 The (recurrent) prediction (of 100 datapoints on the left hand side) features:
 * wild over- and under-swings
 * phase shifts
-* unfinished half-curves (see model #1 of 3)
+* unfinished half-curves (see model #1 of 3 at the very left edge)
 
 The lookback window size was - and still is - set by me to the (known) full period of 150 datapoints (3 * 5 * 10 datapoints). Doubling it didn't help.
 
-<br/>
-
-Apparently a simple one-layer linear model, which did well at the monthly milk production, is insufficient here, even with a perfectly "clean" time series made of two harmonic oscillations!
+Apparently a simple one-layer linear model, which did well at the monthly milk production, is insufficient here, even with a perfectly "clean" time series made of two harmonic oscillations which is even trendless!
 
 ### The two-layer model 
 
@@ -115,14 +115,46 @@ Here's a version of the program where all 100 datapoints of the prediction horiz
 
 The prediction quality seems similar:
 
-![plot](./50percent_t_distr_noise//direct_multiple-step_forecasting/outputs/Linear_deterministic_curve_forecasting--01.png)
+![plot](./direct_multiple-step_forecasting/outputs/Linear_deterministic_curve_forecasting--01.png)
 
-![plot](./50percent_t_distr_noise//direct_multiple-step_forecasting/outputs/Linear_deterministic_curve_forecasting--01a.png)
+![plot](./direct_multiple-step_forecasting/outputs/Linear_deterministic_curve_forecasting--01a.png)
 
+<br/>
 
+However, a direct multiple-step forecast strategy has its price because, albeit using the structurally same linear model, it employs significantly more parameters than the recursive strategy. Here it's 25,200 versus 15,201 parameters:
 
+```
++--------------------+------------+
+|      Modules       | Parameters |
++--------------------+------------+
+| layers.lin1.weight |   15000    |
+|  layers.lin1.bias  |    100     |
+| layers.lin2.weight |   10000    |
+|  layers.lin2.bias  |    100     |
++--------------------+------------+
+Total trainable parameters: 25200
+```
 
+from: https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/experiments_with_linear_models/direct_multiple-step_forecasting/outputs/Linear_deterministic_curve_forecasting_stats.txt
 
+```
++--------------------+------------+
+|      Modules       | Parameters |
++--------------------+------------+
+| layers.lin1.weight |   15000    |
+|  layers.lin1.bias  |    100     |
+| layers.lin2.weight |    100     |
+|  layers.lin2.bias  |     1      |
++--------------------+------------+
+Total trainable parameters: 15201
+```
 
+from: https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/experiments_with_linear_models/20percent_Gaussian_noise/Linear_deterministic_curve_forecasting_stats.txt
 
+And this naturally leads to a higher training effort, be it with a noisey or without a noisy time series, for a comparable prediction quality.
 
+<br/>
+
+I haven't experimented with more advanced forecasting strategies like "Direct-recursive hybrid multi-step forecasting" or "Multiple output multi-step forecasting": https://machinelearningmastery.com/multi-step-time-series-forecasting/
+
+##_end
