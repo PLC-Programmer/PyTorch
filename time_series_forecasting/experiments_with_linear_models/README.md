@@ -67,7 +67,7 @@ class Net(T.nn.Module):
 
 ### What about some noise? 
 
-So far our experimental time series shouldn't have been too demanding (it isn't because its still also perfectly **stationary**: https://towardsdatascience.com/stationarity-in-time-series-analysis-90c94f27322)
+So far our experimental time series shouldn't have been too demanding (it isn't because it's still also perfectly **stationary**: https://towardsdatascience.com/stationarity-in-time-series-analysis-90c94f27322)
 
 So, I added some "benign" noise in the form of Gaussian noise (with a maximum amplitude of roughly 20% of the amplitude of the original signal: *np.max(y_noise) / np.max(y_clean)*) to the original, clean signal:
 
@@ -156,5 +156,13 @@ And this naturally leads to a higher training effort, be it with a noisey or wit
 <br/>
 
 I haven't experimented with more advanced forecasting strategies like "Direct-recursive hybrid multi-step forecasting" or "Multiple output multi-step forecasting": https://machinelearningmastery.com/multi-step-time-series-forecasting/
+
+<br/>
+
+Here's some advice:
+
+*Recursive forecasting is biased when the underlying model is nonlinear, but direct forecasting has higher variance because it uses fewer observations when estimating the model, especially for longer forecast horizons.*
+
+from: https://www.semanticscholar.org/paper/Recursive-and-direct-multi-step-forecasting%3A-the-of-Taieb-Hyndman/432bd2365c8cfebd16577990404d3ff9d05d7e7d
 
 ##_end
