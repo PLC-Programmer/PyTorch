@@ -1,0 +1,39 @@
+model # and LogCosh value:
+  model #0: error metric = 2.83
+  model #1: error metric = 2.79
+  model #2: error metric = 5.53
+---------------
+total_datapoints = 700
+LOOKBACK_WINDOW = 150
+TRAINING_CUTOFF = 500
+VALIDATION_CUTOFF = 600
+# of prediction steps (model output) = 1 datapoint
+prediction horizon = 100
+---------------
+OPTIMIZER = Adam
+LOSS_FUNCTION = LogCosh
+LOSS_LIMIT = 0.01
+LEARNING_RATE = 0.001
+---------------
+TUNE_ON = False
+---------------
+NOISE_ON = False
+NOISE_FACTOR = 0.5
+NOISE_STANDARD_T = True
+NOISE_STANDARD_T_DF = 5.0
+---------------
+EPOCHS (training) = 150
+  mean epochs = 19.3
+  max epochs = 43.0
+  min epochs = 4.0
+---------------
+Mean of the errors of all 3 models = 3.72
+Variance of the errors of all 3 models = 1.6
+
++--------------------+------------+
+|      Modules       | Parameters |
++--------------------+------------+
+| layers.lin1.weight |    150     |
+|  layers.lin1.bias  |     1      |
++--------------------+------------+
+Total trainable parameters: 151
