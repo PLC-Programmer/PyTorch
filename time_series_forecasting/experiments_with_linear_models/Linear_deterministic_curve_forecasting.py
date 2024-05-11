@@ -173,7 +173,7 @@ def split_dataset2a(data):
 #
 class Net(T.nn.Module):
     '''
-    1D convolution
+    linear model
     '''
     def __init__(self):
         super().__init__()
