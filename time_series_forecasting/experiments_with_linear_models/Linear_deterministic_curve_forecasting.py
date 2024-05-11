@@ -8,7 +8,7 @@ In sample: forecast the value of one time step, that is one datapoint, ahead (re
 # 2024-05-09/10/11
 #
 #
-# source:
+# source of idea:
 #   https://github.com/tgchomia/ts/blob/main/Example.txt
 #
 #
