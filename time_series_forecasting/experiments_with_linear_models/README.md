@@ -1,4 +1,4 @@
-### Synthetic times series 
+## Synthetic times series
 
 Sometimes it's easier to experiment with synthetic times series ("deterministic curves") first since it gives you more control over different setups.
 
@@ -82,6 +82,43 @@ Not bad, so I added noise with heavier tails than Gaussian noise, here from a St
 ![plot](./50percent_t_distr_noise/Linear_deterministic_curve_forecasting--00.png)
 
 ![plot](./50percent_t_distr_noise/Linear_deterministic_curve_forecasting--00a.png)
+
+## The forecasting strategy
+
+Like with the monthly milk production this program also applies the **recursive strategy** where only one datapoint is forecast by the model at a time which is then used to forecast the next datapoint:
+
+```
+# do a prediction
+# do some initializations first:
+x_test_tensor = T.empty(LOOKBACK_WINDOW+PREDICTION_LENGTH)  # past of length LOOKBACK_WINDOW + future (in sample) of length PREDICTION_LENGTH
+x_test_ini = T.from_numpy(y[-LOOKBACK_WINDOW-PREDICTION_LENGTH:-PREDICTION_LENGTH])
+x_test_tensor[0:LOOKBACK_WINDOW] = x_test_ini
+
+pred_value = np.empty(PREDICTION_LENGTH)
+
+for i in range(LOOKBACK_WINDOW,LOOKBACK_WINDOW+PREDICTION_LENGTH):
+
+    input = x_test_tensor[i-LOOKBACK_WINDOW:i]
+
+    output = model(input)
+
+    pred_value[i-LOOKBACK_WINDOW] = output.detach().numpy()[0]  # tensor to numpy scalar
+
+    # add predicted value to the test tensor!
+    # so, no update of test data with in-sample-data:
+    x_test_tensor[i] = output
+```
+
+<br/>
+
+Here's a version of the program where all 100 datapoints of the prediction horizon are forecast by the model at a time (**"direct multiple-step forecast"**): https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/experiments_with_linear_models/direct_multiple-step_forecasting/Linear_deterministic_curve_forecasting_multiple_step.py
+
+The prediction quality seems similar:
+
+![plot](./50percent_t_distr_noise//direct_multiple-step_forecasting/outputs/Linear_deterministic_curve_forecasting--01.png)
+
+![plot](./50percent_t_distr_noise//direct_multiple-step_forecasting/outputs/Linear_deterministic_curve_forecasting--01a.png)
+
 
 
 
