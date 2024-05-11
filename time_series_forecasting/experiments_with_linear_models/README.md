@@ -1,4 +1,4 @@
-Sometimes it's easier to experiment with synthetic times series ("curves") first since it gives you more control over different setups.
+Sometimes it's easier to experiment with **synthetic times series** ("curves") first since it gives you more control over different setups.
 
 I got this idea from here: https://github.com/tgchomia/ts/blob/main/Example.txt
 
@@ -18,7 +18,48 @@ However, starting with a one-layer (linear) model led to rather disappointing re
 
 ![plot](./one_layer_no_noise/Linear_deterministic_curve_forecasting--02.png)
 
+The (recurrent) prediction (of 100 datapoints on the left hand side) features:
+* wild over- and under-swings
+* phase shifts
+* unfinished half-curves (see model #1 of 3)
 
+The lookback window size was - and still is - set by me to the (known) full period of 150 datapoints (3 * 5 * 10 datapoints). Doubling it didn't help.
+
+<br/>
+
+Apparently a simple one-layer linear model, which did well at the monthly milk production, is insufficient here, even with a perfectly "clean" time series made of two harmonic oscillations!
+
+So, I added another linear layer (and with a standard ReLU (Rectified Linear Unit) activation function in between.
+By the way: you need some kind of activiation between layers, otherwise a second layer would not lead to any improvements! See for example: "Without any activation, a neural network learn will only be able to learn a linear relation between input and the desired output.", https://link.springer.com/chapter/10.1007/978-3-030-31760-7_1)
+
+..and voilà -- the magic of deep learning kicks in :smile:
+
+![plot](./without_noise/Linear_deterministic_curve_forecasting--00.png)
+
+![plot](./without_noise/Linear_deterministic_curve_forecasting--01.png)
+
+![plot](./without_noise/Linear_deterministic_curve_forecasting--02.png)
+
+This is the core source code of the linear model with two layers:
+
+```
+class Net(T.nn.Module):
+    '''
+    linear model
+    '''
+    def __init__(self):
+        super().__init__()
+        self.layers = T.nn.Sequential(
+                        OrderedDict([
+                          ('lin1', T.nn.Linear(LOOKBACK_WINDOW, PREDICTION_LENGTH)),
+                          ('relu', T.nn.ReLU()),
+                          ('lin2', T.nn.Linear(PREDICTION_LENGTH, 1))
+                        ]))
+
+    def forward(self, x):
+        z = self.layers(x)
+        return z
+```
 
 
 
