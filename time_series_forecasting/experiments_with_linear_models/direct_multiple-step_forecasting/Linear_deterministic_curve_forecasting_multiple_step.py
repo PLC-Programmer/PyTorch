@@ -12,7 +12,7 @@ In sample: direct multiple-step forecast over the full prediction horizon
 #   https://github.com/tgchomia/ts/blob/main/Example.txt
 #
 #
-# run on ubuntu-med3: $ python3 Linear_deterministic_curve_forecasting.py
+# run on Ubuntu: $ python3 Linear_deterministic_curve_forecasting.py
 #
 #
 # test on Ubuntu 22.04.4 LTS, Python 3.10.12, torch 2.1.0: OK (Lin+ReLU+Lin)
