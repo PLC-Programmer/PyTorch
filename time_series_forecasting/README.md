@@ -1,5 +1,5 @@
 Latest contribution (2024-05-11):
-**Experiments with linear models**: https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/experiments_with_linear_models (so far without a **trend** in the time series, but experimenting with noise in the time series)
+**Experiments with linear models**: https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/experiments_with_linear_models (so far without a **trend** in the time series, but experimenting with noise)
 
 ---
 
