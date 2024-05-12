@@ -1,6 +1,13 @@
 Latest contribution (2024-05-11):
 **Experiments with linear models**: https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/experiments_with_linear_models (so far without a **trend** in the time series, but experimenting with noise)
 
+2024-05-12: one thing is already clear to me after some experiments:
+
+> **Warning**
+Trend, even a constant, linear and "soft" trend, is a much harder problem for a (two-layer) linear model than noise!
+
+<br/>
+
 ---
 
 I've been experimenting with a **decomposition** of the highly seasonal **monthly milk production** time series (https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/DLinear#autocorrelation-function-acf) and came to the conclusion that my two concepts I've working on did not surpass the prediction quality of the simple linear model: https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/Linear
