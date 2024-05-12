@@ -22,10 +22,10 @@ However, starting with a one-layer (linear) model led to rather disappointing re
 
 ![plot](./one_layer_no_noise/Linear_deterministic_curve_forecasting--02.png)
 
-The (recurrent) prediction (of 100 datapoints on the left hand side) features:
+The (recurrent) prediction (of 100 datapoints on the right hand side) features:
 * wild over- and under-swings
 * phase shifts
-* unfinished half-curves (see model #1 of 3 at the very left edge)
+* unfinished half-curves (see model #1 of 3 at the very right edge)
 
 The lookback window size was - and still is - set by me to the (known) full period of 150 datapoints (3 * 5 * 10 datapoints). Doubling it didn't help.
 
