@@ -55,7 +55,7 @@ In this paper (++)..
 
 &nbsp;&nbsp;Robert Nau, Fuqua School of Business, Duke University, August 2014: https://people.duke.edu/~rnau/Notes_on_forecasting_with_moving_averages--Robert_Nau.pdf
 
-..I got the idea to experiment with kernel sizes ("model comparison"). That's why I have written this small utility: https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/DLinear/DLinear_monthly_milk_production_moving_averages.py
+..I got the idea to experiment with kernel sizes ("model comparison"). That's why I have written this small utility: https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/Are_transformers_effective_for_time_series_forecasting/DLinear/DLinear_monthly_milk_production_moving_averages.py
 
 ![plot](./outputs/DLinear_monthly_milk_production_moving_averages_01.png)
 
