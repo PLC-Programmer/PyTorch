@@ -99,7 +99,7 @@ Not bad, so I added noise with heavier tails than Gaussian noise, here from a St
 
 ## The forecasting strategy
 
-Like with the monthly milk production this program also applies the **recursive strategy** where only one datapoint is forecast by the model at a time which is then used to forecast the next datapoint:
+Like with the monthly milk production this program also applies the **recursive strategy** where only one datapoint is forecast by the model at a time which is then being used to forecast the next datapoint:
 
 ```
 # do a prediction
