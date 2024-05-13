@@ -12,7 +12,7 @@ I did a decomposition in the spirit of the original *DLinear.py* program (though
 
 After disappointing results I did a concept:
 
-[DLinear_monthly_milk_production_forecasting2a.py](time_series_forecasting/Are_transformers_effective_for_time_series_forecasting/DLinear/backup/DLinear_monthly_milk_production_forecasting2a.py)
+[DLinear_monthly_milk_production_forecasting2a.py](/time_series_forecasting/Are_transformers_effective_for_time_series_forecasting/DLinear/backup/DLinear_monthly_milk_production_forecasting2a.py)
 
 where the trend (moving average) component is completely separated from the remainder (seasonal) component, and only their independent predictions are finally added together. Also this concept was not superior to the Linear concept!
 
