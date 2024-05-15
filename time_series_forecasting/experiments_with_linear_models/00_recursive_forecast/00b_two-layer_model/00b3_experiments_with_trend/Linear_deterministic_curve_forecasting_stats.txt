@@ -1,0 +1,62 @@
+model # and LogCosh value:
+  model #0: error metric = 0.02
+  model #1: error metric = 0.01
+  model #2: error metric = 0.09
+  model #3: error metric = 0.01
+  model #4: error metric = 1.58
+  model #5: error metric = 0.03
+  model #6: error metric = 0.04
+  model #7: error metric = 0.06
+  model #8: error metric = 0.11
+  model #9: error metric = 0.12
+  model #10: error metric = 0.05
+  model #11: error metric = 0.02
+  model #12: error metric = 0.03
+  model #13: error metric = 0.06
+  model #14: error metric = 0.02
+  model #15: error metric = 0.07
+  model #16: error metric = 0.28
+  model #17: error metric = 0.02
+  model #18: error metric = 0.04
+  model #19: error metric = 0.00
+---------------
+total_datapoints = 700
+LOOKBACK_WINDOW = 150
+TRAINING_CUTOFF = 500
+VALIDATION_CUTOFF = 600
+# of prediction steps (model output) = 1 datapoint
+prediction horizon = 100
+---------------
+OPTIMIZER = Adam
+LOSS_FUNCTION = LogCosh
+LOSS_LIMIT = 0.01
+LEARNING_RATE = 0.001
+---------------
+TUNE_ON = False
+---------------
+NOISE_ON = False
+NOISE_FACTOR = 0.5
+NOISE_STANDARD_T = False
+NOISE_STANDARD_T_DF = 5.0
+---------------
+TREND_ON = True
+TREND_TYPE = total
+TREND_STRENGTH = soft
+---------------
+EPOCHS (training) = 150
+  mean epochs = 5.2
+  max epochs = 15.0
+  min epochs = 1.0
+---------------
+Mean of the errors of all 20 models = 0.13
+Variance of the errors of all 20 models = 0.1
+
++--------------------+------------+
+|      Modules       | Parameters |
++--------------------+------------+
+| layers.lin1.weight |   15000    |
+|  layers.lin1.bias  |    100     |
+| layers.lin2.weight |    100     |
+|  layers.lin2.bias  |     1      |
++--------------------+------------+
+Total trainable parameters: 15201
