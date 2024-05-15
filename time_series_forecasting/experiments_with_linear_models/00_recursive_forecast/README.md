@@ -40,11 +40,11 @@ By the way: you need some kind of activiation between layers, otherwise a second
 
 ..and voilà -- the magic of deep learning kicks in :smile:
 
-![plot](./without_noise/Linear_deterministic_curve_forecasting--00.png)
+![plot](./00_recursive_forecast/00b_two-layer_model/Linear_deterministic_curve_forecasting--00.png)
 
-![plot](./without_noise/Linear_deterministic_curve_forecasting--01.png)
+![plot](./00_recursive_forecast/00b_two-layer_model/Linear_deterministic_curve_forecasting--01.png)
 
-![plot](./without_noise/Linear_deterministic_curve_forecasting--02.png)
+![plot](./00_recursive_forecast/00b_two-layer_model/Linear_deterministic_curve_forecasting--02.png)
 
 This is the core source code of the linear model with two layers:
 
