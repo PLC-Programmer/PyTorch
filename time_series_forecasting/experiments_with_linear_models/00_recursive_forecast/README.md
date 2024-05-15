@@ -120,6 +120,6 @@ for i in range(LOOKBACK_WINDOW,LOOKBACK_WINDOW+PREDICTION_LENGTH):
 
 <br/>
 
-This README continues at "The forecasting strategy (part 2)": https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/experiments_with_linear_models/01_direct_multiple-step_forecast#the-forecasting-strategy-part-2
+This README continues at "The forecasting strategy (part 2)": https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/experiments_with_linear_models/01_direct_multiple-step_forecast
 
 ##_end
