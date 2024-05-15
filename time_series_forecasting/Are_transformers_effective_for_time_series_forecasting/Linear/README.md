@@ -1,4 +1,4 @@
-This **simple linear model** for deep learning based time series forecasting (in sample) for forecasting the value of one time step ahead indeed works quite well; at least on the "quite seasonal" (univariate) time series in use here:
+This **simple linear model** (https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/Are_transformers_effective_for_time_series_forecasting/Linear/Linear_monthly_milk_production_forecasting.py) for deep learning based time series forecasting (in sample) for forecasting the value of one time step ahead indeed works quite well; at least on the "quite seasonal" (univariate) time series in use here:
 
 ![plot](.//outputs/monthly_milk_production_forecasting_00.png)
 
