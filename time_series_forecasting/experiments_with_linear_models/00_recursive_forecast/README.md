@@ -115,8 +115,21 @@ for i in range(LOOKBACK_WINDOW,LOOKBACK_WINDOW+PREDICTION_LENGTH):
 
 ## Trend, the straw that broke the camel's back
 
+After these encouraging results with added noise, I took the next step with the synthetic times series and added a trend to the original curve, here as a continuous trend (which I call a "total" trend), being linear and "soft":
+
+![plot](./00b_two-layer_model/00b3_experiments_with_trend/deterministic_curve_with_total_trend_no_noise.png)
+
+<br/>
+
+However, the prediction quality **in average** became visibly "bad":
+
 (TBD)
 
+<br/>
+
+(I didn't test the deterministic curve with trend with my very first, one-layer linear model.)
+
+(TBD)
 
 <br/>
 
