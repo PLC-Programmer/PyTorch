@@ -131,9 +131,9 @@ That didn't mean that no "good" models could be built, here model #20:
 
 ![plot](./00b_two-layer_model/00b3_experiments_with_trend/Linear_deterministic_curve_forecasting--19_perfect_model.png)
 
-My initial guess was that 1 out of 3 models were "bad". But that was too optimistic as I will explain later.
+My initial guess was that 1 out of 3 models were "bad". But that was too optimistic as I will show later.
 
-So I started to make more experiments to see if the prediction quality could be improved at this two-layer model. For example:
+So I started to do more experiments to see if the prediction quality could be improved at this two-layer model. For example:
 
 * I changed back to the standard Mean squared error (MSE) loss function, to no avail
 
