@@ -1,14 +1,14 @@
 ## The forecasting strategy (part 2)
 
-So after experiments with a model which employs the **recursive strategy** (https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/experiments_with_linear_models/00_recursive_forecast#trend-the-straw-that-broke-the-camels-back) and its challenges with even simples trends I changed my computer program to employ a **direct multiple-step strategy**:
+So after experiments with a model which employs the **recursive strategy** (https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/experiments_with_linear_models/00_recursive_forecast#trend-the-straw-that-broke-the-camels-back) and its challenges with even simple trends I changed my computer program to employ a **direct multiple-step strategy**:
 
 https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/experiments_with_linear_models/01_direct_multiple-step_forecast/Linear_deterministic_curve_forecasting_multiple_step.py
 
-At this program all 100 datapoints of the prediction horizon are forecast by the model at a time (in sample). The first results have been encouraging; the prediction quality seemed similar, at least not worst; here arbitrarily model #1 out of 20:
+This program forecasts all 100 datapoints of the prediction horizon at a time (in sample). The first results have been encouraging; the prediction quality seemed similar, at least not worst; here arbitrarily model #1 out of 20:
 
 ![plot](./01_trend_no_noise/01a_loss_limit_0.010/Linear_deterministic_curve_forecasting--00.png)
 
-However, still not everything was rosy now as the worst out of 20 model (https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/experiments_with_linear_models/01_direct_multiple-step_forecast/01_trend_no_noise/01a_loss_limit_0.010/Linear_deterministic_curve_forecasting_stats.txt) shows:
+However, still not everything was rosy now as the worst out of 20 models (https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/experiments_with_linear_models/01_direct_multiple-step_forecast/01_trend_no_noise/01a_loss_limit_0.010/Linear_deterministic_curve_forecasting_stats.txt) shows:
 
 ![plot](./01_trend_no_noise/01a_loss_limit_0.010/Linear_deterministic_curve_forecasting--15.png)
 
