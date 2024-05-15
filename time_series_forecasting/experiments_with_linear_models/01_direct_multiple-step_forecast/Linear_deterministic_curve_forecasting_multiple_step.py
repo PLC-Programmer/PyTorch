@@ -5,7 +5,7 @@ Lookback window size is one full period of the deterministic curve.
 In sample: direct multiple-step forecast over the full prediction horizon
 """
 #
-# 2024-05-11
+# 2024-05-11/12/13
 #
 #
 # source of idea:
@@ -20,6 +20,9 @@ In sample: direct multiple-step forecast over the full prediction horizon
 # test results:
 #   - this forecasting strategy needs more training than the 1-step recursive strategy, be it with noise or without noise
 #   - the structurally same model has more parameters to train: 25200 vs 15201
+#   - trend experiments:
+#     - 100 models with a total, constant and soft trend and without noise: 0.0% of models are "bad"!! (error metric > 0.05)
+#
 #
 #
 # to-do:
@@ -27,6 +30,7 @@ In sample: direct multiple-step forecast over the full prediction horizon
 #
 
 
+import sys
 import datetime
 import pandas as pd
 import math
@@ -50,7 +54,11 @@ from prettytable import PrettyTable
 # no tuning here; I'm too lazy
 
 
-NOISE_ON = True  # default: True; put some Gaussian noise to the basic, harmonic signal
+TREND_ON = True
+TREND_TYPE = 'total'  # 'total', 'left_half_side', 'right_half_side'
+TREND_STRENGTH = 'soft'  # 'soft', 'strong'
+
+NOISE_ON = False  # default: True; put some Gaussian noise to the basic, harmonic signal
 NOISE_FACTOR = 0.2  # 50% noise level
 NOISE_STANDARD_T = False  # Student's t distribution with degrees of freedom
 NOISE_STANDARD_T_DF = 5.0
@@ -74,7 +82,9 @@ LEARNING_RATE = 0.001  # somehow tuned --> see optuna plots
 EPOCHS        = LOOKBACK_WINDOW  #
 OPTIMIZER     = 'Adam'
 LOSS_FUNCTION = 'LogCosh'
-LOSS_LIMIT    = 0.01  # LogCosh, Linear+reLU+Linear
+LOSS_LIMIT    = 0.015  # LogCosh, Linear+reLU+Linear; relaxed for the direct multiple-step forecast
+
+BAD_MODEL_LIMIT = 0.05  # with total, soft trend and without noise
 
 N_PRED        = 3  # org 10 prediction curves; 10 is enough for manual parameter testing
 
@@ -103,6 +113,23 @@ if NOISE_ON:
         y_noise = np.random.randn(len(y)) / y_max * NOISE_FACTOR  # std.dev = 1
 
     y += y_noise
+
+if TREND_ON:
+    if TREND_STRENGTH == 'soft':
+        TREND_PEAK = y_max
+    else:
+        TREND_PEAK = y_max * 3
+
+    if TREND_TYPE == 'total':
+        y_trend = np.linspace(0.0, TREND_PEAK, num=N_DATAPOINTS, endpoint=True)
+
+    elif TREND_TYPE == 'left_half_side':
+        y_trend = np.linspace(0.0, TREND_PEAK, num=N_DATAPOINTS, endpoint=True)
+
+    elif TREND_TYPE == 'right_half_side':
+        y_trend = np.linspace(0.0, TREND_PEAK, num=N_DATAPOINTS, endpoint=True)
+
+    y += y_trend
 
 #
 ##################################################################
@@ -240,6 +267,9 @@ y_train_tensor  = T.from_numpy(y_train).type(T.FloatTensor)
 
 
 pred_error_metric = np.empty([N_PRED])
+bad_predictions_model_cnt = 0
+
+pred_error_metric = np.empty([N_PRED])
 best_error_metric = 1e20
 best_error_model = 0
 loss_limit_epoch = list(range(N_PRED))
@@ -316,6 +346,9 @@ for h in range(N_PRED):
 
     plt.plot(t, y, label=NAME1, color='black', linewidth=0.75)
 
+    if TREND_ON:
+        plt.plot(t, y_trend, label=f'added linear trend of type {TREND_TYPE}, {TREND_STRENGTH}', color='green', linewidth=0.75)
+
     if NOISE_ON:
         plt.plot(t, y_noise, label=f'added noise of type {NOISE_TYPE}', color='red', linewidth=0.75)
 
@@ -350,7 +383,10 @@ for h in range(N_PRED):
         plt.suptitle(TITLE, fontsize=18)
         plt.title('(only prediction shown here)', fontsize=18)
 
-        plt.plot(t, y_clean, label='ground truth', color='blue', linewidth=0.6)
+        if TREND_ON:
+            plt.plot(t, y_clean_trend, label='ground truth', color='blue', linewidth=0.6)
+        else:
+            plt.plot(t, y_clean, label='ground truth', color='blue', linewidth=0.6)
 
         plt.plot(t, pred_value_total, color='orange', label=f'{PREDICTION_LENGTH} datapoints prediction')
 
@@ -384,11 +420,20 @@ for h in range(N_PRED):
 
 
     # save some stats to a text file:
-    stat_row = f'  model #{h}: error metric = {pred_error_metric[h]:.2f}'
+    stat_row = f'  model #{h+1}: error metric = {pred_error_metric[h]:.2f}'
     f2.write(stat_row + '\n')
+
+    # for counting the ratio of "bad" models (error metric > BAD_MODEL_LIMIT):
+    if pred_error_metric[h] > BAD_MODEL_LIMIT:
+        bad_predictions_model_cnt += 1
+
+
+bad_predictions_model_ratio = bad_predictions_model_cnt / N_PRED
 
 
 # finish the stats file:
+f2.write(f'ratio of "bad" models = {bad_predictions_model_ratio:.1%}' + '\n')
+f2.write(f'  "bad": error metric > {BAD_MODEL_LIMIT:.3f}' + '\n')
 f2.write('---------------' + '\n')
 f2.write(f'total_datapoints = {total_datapoints}' + '\n')
 f2.write(f'LOOKBACK_WINDOW = {LOOKBACK_WINDOW}' + '\n')
@@ -406,6 +451,10 @@ f2.write(f'NOISE_ON = {NOISE_ON}' + '\n')
 f2.write(f'NOISE_FACTOR = {NOISE_FACTOR}' + '\n')
 f2.write(f'NOISE_STANDARD_T = {NOISE_STANDARD_T}' + '\n')
 f2.write(f'NOISE_STANDARD_T_DF = {NOISE_STANDARD_T_DF}' + '\n')
+f2.write('---------------' + '\n')
+f2.write(f'TREND_ON = {TREND_ON}' + '\n')
+f2.write(f'TREND_TYPE = {TREND_TYPE}' + '\n')
+f2.write(f'TREND_STRENGTH = {TREND_STRENGTH}' + '\n')
 f2.write('---------------' + '\n')
 f2.write(f'EPOCHS (training) = {EPOCHS}' + '\n')
 f2.write(f'  mean epochs = {np.mean(loss_limit_epoch):.1f}' + '\n')
@@ -433,5 +482,16 @@ print(f'Minimum epoch when the loss limit has been reached = {np.min(loss_limit_
 
 
 breakpoint()
+
+sys.exit(0)
+
+
+plt.suptitle('original curve:')
+plt.title(NAME1)
+plt.plot(t, y_clean)
+plt.grid()
+plt.tight_layout()
+plt.show()
+plt.close()
 
 # end of Linear_deterministic_curve_forecasting_multiple_step.py
