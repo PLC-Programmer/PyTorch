@@ -2,16 +2,10 @@ My experiments with linear models start here at "Synthetic times series": https:
 
 <br/>
 
----
-2024-05-12
-#### Experimental work to do:
+Part 2 can be found here: https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/experiments_with_linear_models/01_direct_multiple-step_forecast
 
-Build and train 100 models for the deterministic curve with a total (that is for the whole time series), constant and "soft" trend (and at first without noise):
-* with the recursive forecast strategy and
-* with the direct multiple-step forecast strategy.
+<br/>
 
-Then compare: what forecast strategy makes less "bad" predictions?
-
-![plot](../experiments_with_linear_models/experiments_with_trends/deterministic_curve_with_trend.png)
+Final part 3 can be found here: https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/experiments_with_linear_models/02_recursive_vs_direct_multiple-step_forecast
 
 ##_end
