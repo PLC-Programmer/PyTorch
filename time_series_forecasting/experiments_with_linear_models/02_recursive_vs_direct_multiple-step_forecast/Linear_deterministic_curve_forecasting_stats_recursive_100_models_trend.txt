@@ -1,0 +1,144 @@
+model # and LogCosh value:
+  model #1: error metric = 0.13
+  model #2: error metric = 0.05
+  model #3: error metric = 0.01
+  model #4: error metric = 0.06
+  model #5: error metric = 0.08
+  model #6: error metric = 0.01
+  model #7: error metric = 0.01
+  model #8: error metric = 0.04
+  model #9: error metric = 0.26
+  model #10: error metric = 0.01
+  model #11: error metric = 0.03
+  model #12: error metric = 0.01
+  model #13: error metric = 0.02
+  model #14: error metric = 0.07
+  model #15: error metric = 0.41
+  model #16: error metric = 0.02
+  model #17: error metric = 0.10
+  model #18: error metric = 0.09
+  model #19: error metric = 0.25
+  model #20: error metric = 0.49
+  model #21: error metric = 0.47
+  model #22: error metric = 0.12
+  model #23: error metric = 0.01
+  model #24: error metric = 0.26
+  model #25: error metric = 0.13
+  model #26: error metric = 0.01
+  model #27: error metric = 0.02
+  model #28: error metric = 0.18
+  model #29: error metric = 0.05
+  model #30: error metric = 0.00
+  model #31: error metric = 0.01
+  model #32: error metric = 0.03
+  model #33: error metric = 1.15
+  model #34: error metric = 0.05
+  model #35: error metric = 0.01
+  model #36: error metric = 0.04
+  model #37: error metric = 0.19
+  model #38: error metric = 0.07
+  model #39: error metric = 0.04
+  model #40: error metric = 0.02
+  model #41: error metric = 0.00
+  model #42: error metric = 0.06
+  model #43: error metric = 0.01
+  model #44: error metric = 0.01
+  model #45: error metric = 0.51
+  model #46: error metric = 0.00
+  model #47: error metric = 0.04
+  model #48: error metric = 0.05
+  model #49: error metric = 0.01
+  model #50: error metric = 0.16
+  model #51: error metric = 0.01
+  model #52: error metric = 0.16
+  model #53: error metric = 0.00
+  model #54: error metric = 0.01
+  model #55: error metric = 0.09
+  model #56: error metric = 0.03
+  model #57: error metric = 0.04
+  model #58: error metric = 0.05
+  model #59: error metric = 0.01
+  model #60: error metric = 0.33
+  model #61: error metric = 0.01
+  model #62: error metric = 0.07
+  model #63: error metric = 0.05
+  model #64: error metric = 0.01
+  model #65: error metric = 0.31
+  model #66: error metric = 1.18
+  model #67: error metric = 0.01
+  model #68: error metric = 0.54
+  model #69: error metric = 1.00
+  model #70: error metric = 0.03
+  model #71: error metric = 0.02
+  model #72: error metric = 0.01
+  model #73: error metric = 0.01
+  model #74: error metric = 0.03
+  model #75: error metric = 0.26
+  model #76: error metric = 0.03
+  model #77: error metric = 0.05
+  model #78: error metric = 0.09
+  model #79: error metric = 0.07
+  model #80: error metric = 0.02
+  model #81: error metric = 0.08
+  model #82: error metric = 0.20
+  model #83: error metric = 0.17
+  model #84: error metric = 0.20
+  model #85: error metric = 0.02
+  model #86: error metric = 0.05
+  model #87: error metric = 0.05
+  model #88: error metric = 0.04
+  model #89: error metric = 0.14
+  model #90: error metric = 0.14
+  model #91: error metric = 0.25
+  model #92: error metric = 0.07
+  model #93: error metric = 0.00
+  model #94: error metric = 0.01
+  model #95: error metric = 0.01
+  model #96: error metric = 0.06
+  model #97: error metric = 0.02
+  model #98: error metric = 0.00
+  model #99: error metric = 0.05
+  model #100: error metric = 0.00
+ratio of "bad" models = 47.0%
+  "bad": error metric > 0.050
+---------------
+total_datapoints = 700
+LOOKBACK_WINDOW = 150
+TRAINING_CUTOFF = 500
+VALIDATION_CUTOFF = 600
+# of prediction steps (model output) = 1 datapoint
+prediction horizon = 100
+---------------
+OPTIMIZER = Adam
+LOSS_FUNCTION = LogCosh
+LOSS_LIMIT = 0.01
+LEARNING_RATE = 0.001
+---------------
+TUNE_ON = False
+---------------
+NOISE_ON = False
+NOISE_FACTOR = 0.5
+NOISE_STANDARD_T = False
+NOISE_STANDARD_T_DF = 5.0
+---------------
+TREND_ON = True
+TREND_TYPE = total
+TREND_STRENGTH = soft
+---------------
+EPOCHS (training) = 150
+  mean epochs = 5.5
+  max epochs = 17.0
+  min epochs = 1.0
+---------------
+Mean of the errors of all 100 models = 0.12
+Variance of the errors of all 100 models = 0.0
+
++--------------------+------------+
+|      Modules       | Parameters |
++--------------------+------------+
+| layers.lin1.weight |   15000    |
+|  layers.lin1.bias  |    100     |
+| layers.lin2.weight |    100     |
+|  layers.lin2.bias  |     1      |
++--------------------+------------+
+Total trainable parameters: 15201
