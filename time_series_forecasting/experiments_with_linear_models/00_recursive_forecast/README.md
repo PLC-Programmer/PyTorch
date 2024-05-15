@@ -73,9 +73,9 @@ So far our experimental time series shouldn't have been too demanding (it isn't 
 
 So, I added some "benign" noise in the form of Gaussian noise (with a maximum amplitude of roughly 20% of the amplitude of the original signal: *np.max(y_noise) / np.max(y_clean)*) to the original, clean signal:
 
-![plot](./20percent_Gaussian_noise/Linear_deterministic_curve_forecasting--01.png)
+![plot](./00b_two-layer_model/00b1_noise_20percent_Gaussian/Linear_deterministic_curve_forecasting--01.png)
 
-![plot](./20percent_Gaussian_noise/Linear_deterministic_curve_forecasting--01a.png)
+![plot](./00b_two-layer_model/00b1_noise_20percent_Gaussian/Linear_deterministic_curve_forecasting--01a.png)
 
 ### What about some more noise? 
 
