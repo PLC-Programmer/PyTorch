@@ -12,6 +12,8 @@ Above is also a "quite seasonal" (univariate) time series, like the monthly milk
 
 ![plot](../../Are_transformers_effective_for_time_series_forecasting/DLinear/backup/monthly_milk_production_forecasting2_00a.png)
 
+(link: https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/Are_transformers_effective_for_time_series_forecasting/DLinear/backup/monthly_milk_production_forecasting2_00a.png)
+
 ..but here made of only two harmonic oscillations. Albeit this synthetic times series doesn't feature a **trend**! Cf. https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/Are_transformers_effective_for_time_series_forecasting/DLinear
 
 <br/>
