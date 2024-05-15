@@ -18,11 +18,11 @@ Above is also a "quite seasonal" (univariate) time series, like the monthly milk
 
 However, starting with a one-layer (linear) model led to rather disappointing results like these:
 
-![plot](./one_layer_no_noise/Linear_deterministic_curve_forecasting--00.png)
+![plot](./00a_one-layer_model/Linear_deterministic_curve_forecasting--00.png)
 
-![plot](./one_layer_no_noise/Linear_deterministic_curve_forecasting--01.png)
+![plot](./00a_one-layer_model/Linear_deterministic_curve_forecasting--01.png)
 
-![plot](./one_layer_no_noise/Linear_deterministic_curve_forecasting--02.png)
+![plot](./00a_one-layer_model/Linear_deterministic_curve_forecasting--02.png)
 
 The (recurrent) prediction (of 100 datapoints on the right hand side) features:
 * wild over- and under-swings
