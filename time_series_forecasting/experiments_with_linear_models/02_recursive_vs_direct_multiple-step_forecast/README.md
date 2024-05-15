@@ -28,9 +28,11 @@ Well, one out of three models already had its difficulties (here still with the 
 
 ![plot](../01_direct_multiple-step_forecast/02_without_trend_and_with_noise/Linear_deterministic_curve_forecasting--02a.png)
 
+So, there was no "early stopping" after 150 (training) epochs.
+
 <br/>
 
-Recursive strategy: remember, this is the worst model out of three in the presence of noise with a t-distribution with 5.0 degrees of freedom and a noise factor of **0.5**:
+Recursive strategy: remember, this is the worst model out of three in the presence of noise with a t-distribution with 5.0 degrees of freedom and a noise factor of **0.5** and which stopped after only **2 epochs**:
 
 ![plot](../00_recursive_forecast/00b_two-layer_model/00b2_noise_50percent_t_distr/Linear_deterministic_curve_forecasting--00a.png)
 
