@@ -112,12 +112,6 @@ To my astonishment also the prediction quality increased! Not one "bad" model wi
 
 again from: https://github.com/PLC-Programmer/PyTorch/blob/main/time_series_forecasting/experiments_with_linear_models/01_direct_multiple-step_forecast/01_trend_no_noise/01b_loss_limit_0.015/Linear_deterministic_curve_forecasting_stats.txt
 
-
-
-
-(TBD)
-
-
 <br/>
 
 I haven't experimented with more advanced forecasting strategies like "Direct-recursive hybrid multi-step forecasting" or "Multiple output multi-step forecasting": https://machinelearningmastery.com/multi-step-time-series-forecasting/
@@ -130,6 +124,8 @@ Here's some advice:
 
 from: https://www.semanticscholar.org/paper/Recursive-and-direct-multi-step-forecasting%3A-the-of-Taieb-Hyndman/432bd2365c8cfebd16577990404d3ff9d05d7e7d
 
-(TBD)
+<br/>
+
+This README continues at "The forecasting strategy (part 3/3) -- the 100 models competition": https://github.com/PLC-Programmer/PyTorch/tree/main/time_series_forecasting/experiments_with_linear_models/02_recursive_vs_direct_multiple-step_forecast
 
 ##_end
