@@ -20,7 +20,7 @@ It's pretty clear that with a "total", linear and "soft" trend the direct multip
 
 At this point I only had one more question:
 
-How is the direct multiple-step strategy doing with the presence of noise, here with a t-distribution with 5.0 degrees of freedom and a noise factor of 0.2 and without trend? 
+How is the direct multiple-step strategy doing with the presence of noise, here with "benign" Gaussian noise with a noise factor of 0.2 and without trend?
 
 Well, one out of three models already had its difficulties (here still with the old loss limit of 0.01):
 
