@@ -81,9 +81,9 @@ So, I added some "benign" noise in the form of Gaussian noise (with a maximum am
 
 Not bad, so I added noise with heavier tails than Gaussian noise, here from a Student's t-distribution with 5.0 degrees of freedom (df's; if df's go to infinity this distribution becomes the standard normal distribution):
 
-![plot](./50percent_t_distr_noise/Linear_deterministic_curve_forecasting--00.png)
+![plot](./00b_two-layer_model/00b2_noise_50percent_t_distr/Linear_deterministic_curve_forecasting--00.png)
 
-![plot](./50percent_t_distr_noise/Linear_deterministic_curve_forecasting--00a.png)
+![plot](./00b_two-layer_model/00b2_noise_50percent_t_distr/Linear_deterministic_curve_forecasting--00a.png)
 
 ## The forecasting strategy
 
