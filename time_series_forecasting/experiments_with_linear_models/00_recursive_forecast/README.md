@@ -121,15 +121,29 @@ After these encouraging results with added noise, I took the next step with the 
 
 <br/>
 
-However, the prediction quality **in average** became visibly "bad":
+However, the prediction quality **in average** became visibly "bad", here model #5 out of 20 models as a low point:
 
-(TBD)
+![plot](./00b_two-layer_model/00b3_experiments_with_trend/Linear_deterministic_curve_forecasting--04_really_bad_model.png)
+
+Be aware that this model was trained for only one epoch because this was sufficient to reach the loss limit of 0.01 :astonished:
+
+That didn't mean that no "good" models could be built, here model #20:
+
+![plot](./00b_two-layer_model/00b3_experiments_with_trend/Linear_deterministic_curve_forecasting--19_perfect_model.png)
+
+My initial guess was that 1 out of 3 models were "bad". But that was too optimistic as I will explain later.
+
+So I started to make more experiments to see if the prediction quality could be improved at this two-layer model. For example:
+
+* I changed back to the standard Mean squared error (MSE) loss function, to no avail
+
+* I added another linear layer, also to no avail
 
 <br/>
 
-(I didn't test the deterministic curve with trend with my very first, one-layer linear model.)
+Only then I started to doubt the recursive forecasting strategy, at least with this synthetic times series.
 
-(TBD)
+(I didn't test this deterministic curve with trend with my first, one-layer linear model.)
 
 <br/>
 
